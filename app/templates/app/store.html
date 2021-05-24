@@ -1,0 +1,37 @@
+{% extends 'app/main.html' %}
+{% load static %}
+{% block content %}
+<div class="row">
+    {% for product in products %}
+    <div style="padding-bottom:50px;" class="col-lg-4">
+        <img class="thumbnail" src="{{product.imageURL}}">
+        <div style="display:grid" class="box-element product">
+            <h6 style="text-align:center"><strong>{{product.name}}</strong></h6>
+            <hr>
+            <!--<button data-product="{{product.id}}" data-actions="add" class="btn btn-outline-secondary add-btn update-cart">Add to Cart</button>-->
+            <button class="btn btn-outline-secondary add-btn update-cart">Start date : {{product.start_date}}</button>
+            <a class="btn btn-outline-success" href="#">End date : {{product.end_date}}</a>
+            <button class="btn btn-outline-secondary add-btn update-cart">Digital Product : {{product.digital}}</button>
+            <a style="text-align:center" class="btn btn-outline-success" href="#">Auction Finished : {{product.bidding_finished}}</a>
+            <hr>
+            <h4 style="text-align:center">Base Price : {{product.base_price|floatformat:2}}$</h4>
+        </div>
+            <!--per l'aggiunta in base al product id prendere spunto dallo store di Dennis
+                dove fa compiere l'azione al button in base al product.id
+                potrebbe essere utile anche prendere spunto da come
+                ha preso le info dinamiche dai Cookies in utils.py-->
+        <div>
+            <form method="POST">
+                {% csrf_token %}
+                <label style="text-align:center">Make your bid:</label>
+                <input name="bid" value=0.00> $
+                <button name= "product.id" value= "{{product.id}}" class= "btn btn-outline-secondary add-btn update-cart">Send your bid</button>
+            </form>
+        </div>
+    </div>
+    {% endfor %}
+ {% for message in messages %}
+    <p id="messages">{{message}}</p>
+ {% endfor %}
+</div>
+{% endblock %}

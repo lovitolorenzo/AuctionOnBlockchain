@@ -1,0 +1,50 @@
+{% extends 'app/main.html' %}
+{% load static %}
+{% block content %}
+
+            <h3>My Bids</h3>
+            {% for prod, bids in my_bids.items %}
+             <div class="cart-row"></div>
+                <div style="flex:2"> Product n° {{prod.1}} : {{prod.0}} </div>
+                 {% for bidder, bid_value in bids.items %}
+                    {% if bidder == "highest_bid" %}
+                        <div style="flex:1">Highest Bid: ${{bid_value}}</div>
+                    {% else %}
+                        <div style="flex:1">Bettor: {{bidder}} with amount of ${{bid_value}}</div>
+                    {% endif %}
+                {% if bidder != "highest_bid" %}
+                <div style="flex:1">
+                <form action = "{% url 'cart_delete' %}">
+                    {% csrf_token %}
+                    <div class="w3-bar w3-red w3-wide w3-padding w3-card container" style="margin-left:300px">
+                    <button type="submit" class="submit_input btn" name="prod_id" value={{prod.1}}> DELETE YOUR BET </button>
+                    </div>
+                </form>
+                </div>
+                {% endif %}
+                {% endfor %}
+            {% endfor %}
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+
+            <hr>
+             <h3>Competitors Bids</h3>
+            {% for prod, bids in competitors_bids.items %}
+             <div class="cart-row"></div>
+                <div style="flex:2"> Product n° {{prod.1}} : {{prod.0}} </div>
+                 {% for bidder, bid_value in bids.items %}
+                    {% if bidder == "highest_bid" %}
+                        <div style="flex:1">Highest Bid: ${{bid_value}}</div>
+                    {% else %}
+                        <div style="flex:1">Bettor: {{bidder}} with amount of ${{bid_value}}</div>
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
+{% endblock %}
+
+
+
+<!--{% for key, value in mydict.items %}
+    {{ value }}
+{% endfor %}-->
