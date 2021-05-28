@@ -5,4 +5,4 @@ The website allows the user to register, obviously, a personal data page, the op
 For each closed auction, furthermore, the site register on blockchain winner, winner's bet price, auction's item, number of bettors and more others data, by using Web3 and Ganache.
 
 <h2>Technologies & Resources</h2>
-<strong>Django, Redis, Python, HTML, CSS, Ganache</strong>
+<strong>Django, Redis, Python, HTML, CSS, Infura</strong>
