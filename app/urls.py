@@ -15,4 +15,5 @@ urlpatterns = [
     path('login/', views.login_page, name="login_page"),
     path('register/', views.register_page, name="register"),
     path('show/closed/', views.show_closed, name="show_closed"),
+    path('transaction/verification', views.transaction_verification, name='transaction_verification'),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
